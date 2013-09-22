@@ -24,8 +24,8 @@ module.exports = (grunt) ->
 		copy: {
 			main: {
 				files: [
-					{expand: true, src:['html/*'], dest: 'out/', filter: 'isFile'},
-					{expand: true, src:['app/*'], dest: 'out/', filter: 'isFile'}
+					{expand: true, flatten: true, src:['html/*'], dest: 'out/', filter: 'isFile'},
+					{expand: true, flatten: true, src:['app/*'], dest: 'out/', filter: 'isFile'}
 				]
 			}
 		}
@@ -39,4 +39,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-copy'
-	grunt.registerTask 'default', ['uglify']
+	grunt.registerTask 'default', ['uglify', 'coffee', 'copy']
