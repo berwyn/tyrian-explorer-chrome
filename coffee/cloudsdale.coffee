@@ -1,12 +1,16 @@
 window.onload = ->
-	$ = (sel) ->
-		return document.querySelector(sel)
 
-	appView = $('#cloudsdale_webview')
+	appView = document.querySelector("#cloudsdale_webview")
 	appWindow = chrome.app.window.current()
 
-	window.onresize = ->
+	doLayout = ->
 		bounds = appWindow.getBounds()
-		unless appView.nil?
+		if appView?
+			console.log 'Resizing webview'
 			appView.setAttribute "width", bounds["width"]
 			appView.setAttribute "height", bounds["height"]
+
+	# appWindow.onBoundsChanged.addListener doLayout
+	# appWindow.onFullscreened.addListener doLayout
+	# appWindow.onMaximized.addListener doLayout
+	# appWindow.onRestored.addListener doLayout

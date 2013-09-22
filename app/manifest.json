@@ -2,7 +2,8 @@
 	"name": "Cloudsdale",
 	"version": "1.2",
 	"manifest_version": 2,
-	"permissions": ["webview"],
+	"minimum_chrome_version": "23",
+	"permissions": ["webview", "app.window"],
 	"icons": {
 		"128": "cloudsdale_icon_128.png"
 	},
