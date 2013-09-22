@@ -13,10 +13,12 @@ module.exports = (grunt) ->
 		coffee: {
 			options: {
 				sourceMap: true
+				bare:  true
 			}
 			compile: {
 				files: {
-					'out/background.js': 'coffee/background.coffee'
+					'out/background.js': 'coffee/background.coffee',
+					'out/cloudsdale.js': 'coffee/cloudsdale.coffee'
 				}
 			}
 		}
@@ -30,6 +32,8 @@ module.exports = (grunt) ->
 			}
 		}
 
+		clean: ['out/']
+
 		build: {
 			# Fill this out
 		}
@@ -39,4 +43,5 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-copy'
+	grunt.loadNpmTasks 'grunt-contrib-clean'
 	grunt.registerTask 'default', ['uglify', 'coffee', 'copy']
