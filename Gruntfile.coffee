@@ -19,6 +19,7 @@ module.exports = (grunt) ->
             'coffee/app/gw2.coffee'
             'coffee/app/controllers.coffee'
             'coffee/app/directives.coffee'
+            'coffee/app/config.coffee'
           ]
 
     sass:
