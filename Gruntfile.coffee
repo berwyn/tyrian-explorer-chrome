@@ -1,47 +1,49 @@
 module.exports = (grunt) -> 
-	
-	# Project configuration
-	grunt.initConfig {
-		pkg: grunt.file.readJSON 'package.json'
+  
+  # Project configuration
+  grunt.initConfig
+    pkg: grunt.file.readJSON 'package.json'
 
-		uglify: {
-			options: {
-				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-			}
-		}
+    uglify:
+      options:
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 
-		coffee: {
-			options: {
-				sourceMap: true
-				bare:  true
-			}
-			compile: {
-				files: {
-					'out/background.js': 'coffee/background.coffee',
-					'out/cloudsdale.js': 'coffee/cloudsdale.coffee'
-				}
-			}
-		}
+    coffee:
+      options:
+        sourceMap: true
+        bare:  true
+      compile:
+        files:
+          'out/background.js': 'coffee/background.coffee'
+          'out/gw2.js': [
+            'coffee/app/gw2.coffee'
+            'coffee/app/controllers.coffee'
+            'coffee/app/directives.coffee'
+          ]
 
-		copy: {
-			main: {
-				files: [
-					{expand: true, flatten: true, src:['html/*'], dest: 'out/', filter: 'isFile'},
-					{expand: true, flatten: true, src:['app/*'], dest: 'out/', filter: 'isFile'}
-				]
-			}
-		}
+    sass:
+      dist:
+        options:
+          sourcemap: true
+          style: 'compact'
+        files:
+          'out/gw2.css': 'sass/gw2.sass'
 
-		clean: ['out/']
+    copy:
+      main:
+        files: [
+          {expand: true, flatten: true,   src:['app/*'],  dest: 'out/',         filter: 'isFile'}
+          {expand: true, flatten: true,   src:['css/*'],  dest: 'out/',         filter: 'isFile'}
+          {expand: true, cwd: 'vendor/',  src:['**'],     dest: 'out/vendor/',  filter: 'isFile'}
+          {expand: true, cwd: 'html/',    src:['**'],     dest: 'out/',         filter: 'isFile'}
+        ]
 
-		build: {
-			# Fill this out
-		}
-	}
+    clean: ['out/']
 
-	# Load uglify
-	grunt.loadNpmTasks 'grunt-contrib-uglify'
-	grunt.loadNpmTasks 'grunt-contrib-coffee'
-	grunt.loadNpmTasks 'grunt-contrib-copy'
-	grunt.loadNpmTasks 'grunt-contrib-clean'
-	grunt.registerTask 'default', ['uglify', 'coffee', 'copy']
+  # Load uglify
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-sass'
+  grunt.registerTask 'default', ['clean', 'uglify', 'coffee', 'sass', 'copy']

@@ -1,0 +1,2 @@
+MapCtrl = ($scope, $http) ->
+	

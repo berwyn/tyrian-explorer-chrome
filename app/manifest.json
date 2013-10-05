@@ -1,15 +1,21 @@
 {
-	"name": "Cloudsdale",
-	"version": "1.2",
+	"name": "GW2 Companion",
+	"version": "1.0",
 	"manifest_version": 2,
 	"minimum_chrome_version": "23",
-	"permissions": ["webview", "app.window"],
+	"permissions": [
+		"app.window",
+		"https://api.guildwars2.com/*",
+		"https://tiles.guildwars2.com/*"
+	],
 	"icons": {
-		"128": "cloudsdale_icon_128.png"
+		"128": "gw2_icon_128.png"
 	},
 	"app": {
 		"background": {
-			"scripts": ["background.js"]
+			"scripts": [
+				"background.js"
+			]
 		}
 	}
 }
