@@ -47,4 +47,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-sass'
-  grunt.registerTask 'default', ['clean', 'uglify', 'coffee', 'sass', 'copy']
+  grunt.registerTask 'build', ['clean', 'uglify', 'coffee', 'sass', 'copy']
