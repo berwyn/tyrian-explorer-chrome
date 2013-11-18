@@ -1,3 +1,5 @@
 out/
 node_modules/
 .sass-cache/
+.DS_Store
+

@@ -51,7 +51,7 @@ module.exports = (grunt) ->
         files: ['app/*', 'html/*', 'vendor/*']
         tasks: ['copy']
       all:
-        files: ['app/*', 'coffee/*', 'html/*', 'sass/*', 'vendor/*']
+        files: ['app/**', 'coffee/**', 'html/**', 'sass/**', 'vendor/**']
         tasks: ['build']
 
   # Load uglify

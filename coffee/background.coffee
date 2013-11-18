@@ -4,4 +4,4 @@ chrome.app.runtime.onLaunched.addListener (launchData) ->
 		bounds:
 			width: 800
 			height: 600
-		frame: 'none'
+		# frame: 'none'
