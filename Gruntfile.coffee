@@ -1,5 +1,5 @@
-module.exports = (grunt) -> 
-  
+module.exports = (grunt) ->
+
   # Project configuration
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
@@ -34,12 +34,25 @@ module.exports = (grunt) ->
       main:
         files: [
           {expand: true, flatten: true,   src:['app/*'],  dest: 'out/',         filter: 'isFile'}
-          {expand: true, flatten: true,   src:['css/*'],  dest: 'out/',         filter: 'isFile'}
           {expand: true, cwd: 'vendor/',  src:['**'],     dest: 'out/vendor/',  filter: 'isFile'}
           {expand: true, cwd: 'html/',    src:['**'],     dest: 'out/',         filter: 'isFile'}
         ]
 
     clean: ['out/']
+
+    watch:
+      sass:
+        files: ['sass/*.sass']
+        tasks: ['sass']
+      coffee:
+        files: ['coffee/*.coffee']
+        tasks: ['coffee']
+      static:
+        files: ['app/*', 'html/*', 'vendor/*']
+        tasks: ['copy']
+      all:
+        files: ['app/*', 'coffee/*', 'html/*', 'sass/*', 'vendor/*']
+        tasks: ['build']
 
   # Load uglify
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -47,4 +60,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-sass'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.registerTask 'build', ['clean', 'uglify', 'coffee', 'sass', 'copy']

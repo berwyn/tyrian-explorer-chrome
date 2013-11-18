@@ -14,10 +14,10 @@
 <body>
   <titlebar></titlebar>
   <div class="row main-body">
-    <div class="col-xs-2 side-nav">
-      
+    <sidebar ng-cloak></sidebar>
+    <div class="col-xs-10" ng-view>
+      <h1>Main content</h1>
     </div>
-    <div class="col-xs-10" ng-view></div>
   </div>
 </body>
 </html>

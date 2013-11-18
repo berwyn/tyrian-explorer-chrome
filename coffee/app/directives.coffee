@@ -1,4 +1,19 @@
-gw2.directive 'titlebar', () ->
+directives = angular.module 'gw2.directives', []
+
+directives.directive 'sidebar', () ->
+  restrict: 'E'
+  replace: true
+  transclude: true
+  templateUrl: 'partials/sidebar.html'
+  controller: ($scope) ->
+  link: (scope, element, attrs) ->
+    element.affix
+      offset:
+        top: 0
+        left: 0
+        bottom: 0
+
+directives.directive 'titlebar', () ->
   restrict: 'E'
   replace: true
   transclude: true
@@ -8,23 +23,19 @@ gw2.directive 'titlebar', () ->
       chrome.app.window.current().close()
 
     $scope.minimizeWindow = ->
-      if chrome.app.window.current().isMinimized()
-        chrome.app.window.current().restore()
+      currentWindow = chrome.app.window.current()
+      if currentWindow.isMinimized()
+        currentWindow.restore()
       else
-        chrome.app.window.current().minimize()
+        currentWindow.minimize()
 
     $scope.maximizeWindow = ->
-      if chrome.app.window.current().isFullscreen()
-        chrome.app.window.current().restore()
+      currentWindow = chrome.app.window.current()
+      if currentWindow.isFullscreen()
+        currentWindow.restore()
       else
-        chrome.app.window.current().fullscreen()
+        currentWindow.fullscreen()
   link: (scope, element, attrs) ->
     chrome.runtime.getPlatformInfo (info) ->
-      osx = info.os == 'mac'
-      cssClass = ''
-      if osx
-        cssClass = 'osx'
-      else
-        cssClass = 'windows'
-      $('.titlebar').addClass cssClass
-      $('a', element).addClass cssClass
+      if info.os == 'mac'
+        element.addClass('osx')
